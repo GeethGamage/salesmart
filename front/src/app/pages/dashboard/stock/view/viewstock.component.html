@@ -1,0 +1,83 @@
+<div class="main-content">
+
+  <form [formGroup]="registerForm" (ngSubmit)="search()">
+
+    <div class="row" *ngIf="showMsg">
+      <div class="col-xs-12"><p class="alert alert-success"><strong>Registration Success!</strong> Please click
+        here
+        to login!.</p></div>
+    </div>
+    <div class="row" *ngIf="showError">
+      <div class="col-xs-12"><p class="alert alert-danger"><strong>Error in Adding.!</strong> Please click here to
+        login!.</p></div>
+    </div>
+
+    <div class="form-group">
+      <label>Item Code </label>
+      <input type="text" formControlName="taskcode"
+             class="form-control" [(ngModel)]="stock.code"/>
+    </div>
+    <div class="form-group">
+      <label>Name</label>
+      <input type="text" formControlName="description" class="form-control" [(ngModel)]="stock.name"
+      />
+    </div>
+
+
+    <input class="btn btn-md btn-outline-primary" type="submit" value="Search">
+    <input class="btn btn-md btn-outline-primary" type="button" value="Reset" (click)="resetForm()">
+    <button class="btn btn-md btn-outline-primary" (click)="open()">Add Task</button>
+  </form>
+
+
+
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title ">Stock Management</h4>
+        <p class="card-category"> Here is a subtitle for this table</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1" class="table table-striped " id="table1">
+            <thead>
+            <tr>
+              <th>Item Code</th>
+              <th>Name</th>
+              <th>Whole Sale Prise</th>
+              <th>Retail Prise</th>
+              <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let rec of stockList">
+              <td>{{rec.code}}</td>
+              <td>{{rec.name}}</td>
+              <td>{{rec.wholesalePrice}}</td>
+              <td>{{rec.retailPrice}}</td>
+              <td class="table-action-column">
+                <a *ngIf="true" (click)="openUpdateModal(rec)" data-toggle="tooltip"
+                   data-placement="top" ngbTooltip="Edit">
+                  <i class="fa fa-edit"></i>
+                </a>
+                <a *ngIf="true" (click)="openDeleteModal(rec)" data-toggle="tooltip"
+                   data-placement="top" ngbTooltip="Delete">
+                  <i class="fa fa-trash"></i>
+                </a>
+                <a *ngIf="true" (click)="openViewModal(rec)" data-toggle="tooltip"
+                   data-placement="top" ngbTooltip="View">
+                  <i class="fa fa-eye"></i>
+                </a>
+              </td>
+            </tr>
+            <tr *ngIf="stockList?.length == 0">
+              <td colspan="7" class="no-data-available">No data Available!</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

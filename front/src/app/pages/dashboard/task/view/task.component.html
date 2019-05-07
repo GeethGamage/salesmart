@@ -1,0 +1,72 @@
+<div class="main-content">
+
+    <form [formGroup]="registerForm" (ngSubmit)="search()">
+
+        <div class="row" *ngIf="model.showMsg">
+            <div class="col-xs-12"><p class="alert alert-success"><strong>Registration Success!</strong> Please click
+                here
+                to login!.</p></div>
+        </div>
+        <div class="row" *ngIf="model.showError">
+            <div class="col-xs-12"><p class="alert alert-danger"><strong>Error in Adding.!</strong> Please click here to
+                login!.</p></div>
+        </div>
+
+        <div class="form-group">
+            <label>Task Code </label>
+            <input type="text" formControlName="taskcode"
+                   class="form-control" [(ngModel)]="model.taskcode"/>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <input type="text" formControlName="description" class="form-control" [(ngModel)]="model.description"
+            />
+        </div>
+        <div class="form-group">
+            <label>Sort Key</label>
+            <input type="text" formControlName="sortkey" class="form-control" [(ngModel)]="model.sortkey"
+            />
+        </div>
+
+        <input class="btn btn-lg btn-outline-primary" type="submit" value="Search">
+        <input class="btn btn-lg btn-outline-primary" type="button" value="Reset" (click)="resetForm(f)">
+        <button class="btn btn-lg btn-outline-primary" (click)="open()">Add Task</button>
+    </form>
+
+    <table datatable [dtOptions]="dtOptions1" [dtTrigger]="dtTrigger1" class="row-border hover">
+        <thead>
+        <tr>
+            <th>Task Code</th>
+            <th>Description</th>
+            <th>Sort Key</th>
+            <th>Lastupdated User</th>
+            <th>Created Time</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let rec of taskList">
+            <td>{{rec.taskcode}}</td>
+            <td>{{rec.description}}</td>
+            <td>{{rec.sortkey}}</td>
+            <td>{{rec.lastupdateduser}}</td>
+            <td>{{rec.createdtime}}</td>
+            <td class="table-action-column">
+                <a *ngIf="true" (click)="openUpdateModal(rec)" data-toggle="tooltip"
+                   data-placement="top" ngbTooltip="Edit">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a *ngIf="true" (click)="openDeleteModal(rec)" data-toggle="tooltip"
+                   data-placement="top" ngbTooltip="Delete">
+                    <i class="fa fa-trash"></i>
+                </a>
+                <a *ngIf="true" (click)="openViewModal(rec)" data-toggle="tooltip"
+                   data-placement="top" ngbTooltip="View">
+                    <i class="fa fa-eye"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>

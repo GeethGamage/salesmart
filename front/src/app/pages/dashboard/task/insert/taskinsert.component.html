@@ -1,0 +1,73 @@
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">
+            <img src="/assets/images/logo.png" class="modal-header-logo" alt="" height="30px">
+            <span class="modal-header-title" [hidden]="copymodel">Add Task Details</span>
+            <span class="modal-header-title" [hidden]="!copymodel">Clone Task Details</span>
+        </h4>
+        <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+            <span class="close-icon" aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+            <div class="row" *ngIf="model.showMsg">
+                <div class="col-xs-12"><p class="alert alert-success"><strong>Registration Success!</strong> Please click here
+                    to login!.</p></div>
+            </div>
+            <div class="row" *ngIf="model.showError">
+                <div class="col-xs-12"><p class="alert alert-danger"><strong>Error in Adding.!</strong> Please click here to
+                    login!.</p></div>
+            </div>
+
+
+            <div class="form-group">
+                <label>Task Code </label>
+                <input type="text" formControlName="taskcode"
+                       class="form-control"  [(ngModel)]="model.taskcode" [ngClass]="{ 'is-invalid':f.taskcode.touched && f.taskcode.errors }" />
+                <div *ngIf="f.taskcode.touched && f.taskcode.errors" class="invalid-feedback">
+                    <div *ngIf="f.taskcode.errors.required">Task Code is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input type="text" formControlName="description" class="form-control" [(ngModel)]="model.description"
+                       [ngClass]="{ 'is-invalid': f.description.touched &&  f.description.errors }" />
+                <div *ngIf="f.description.touched && f.description.errors" class="invalid-feedback">
+                    <div *ngIf="f.description.errors.required">description is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Sort Key</label>
+                <input type="text" formControlName="sortkey" class="form-control" [(ngModel)]="model.sortkey"
+                       [ngClass]="{ 'is-invalid': f.sortkey.touched && f.sortkey.errors }" />
+                <div *ngIf="f.sortkey.touched && f.sortkey.errors" class="invalid-feedback">
+                    <div *ngIf="f.sortkey.errors.required">sortkey is required</div>
+                    <div *ngIf="f.sortkey.errors.maxlength">sortkey must be not more than 2 characters</div>
+                </div>
+            </div>
+
+
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <div class="mv-mandatory-field">Mandatory fields are marked with
+                            <span style="color: red">*</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <input type="submit" class="primary-button" value="Submit" [disabled]="!registerForm.valid">
+                    <input type="button" class="primary-button" value="Reset" (click)="resetForm(f)">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
