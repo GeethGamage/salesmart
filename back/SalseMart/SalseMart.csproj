@@ -241,9 +241,9 @@
     <Compile Include="Controllers\Api\StockController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Core\DBAccess.cs" />
-    <Compile Include="Dtos\DataTableDTO.cs" />
-    <Compile Include="Dtos\StockDto.cs" />
+    <Compile Include="Dao\DBAccess.cs" />
+    <Compile Include="Dto\DataTableDTO.cs" />
+    <Compile Include="Dto\StockDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
