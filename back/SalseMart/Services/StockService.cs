@@ -43,18 +43,16 @@ namespace SalseMart.Services
             }
             return dtoTo;
         }
-        public void InsertStock(string jsonString)
-        {
-            var item = JsonConvert.DeserializeObject<StockDto>(jsonString);
+        public void InsertStock(StockDto item)
+        {         
             _stockDao.InsertStock(item);
         }
         public void DeleteStock(int id)
         {
             _stockDao.DeleteStock(id);
         }
-        public void UpdateStock(string jsonString)
-        {
-            var item = JsonConvert.DeserializeObject<StockDto>(jsonString);
+        public void UpdateStock(StockDto item)
+        {          
             _stockDao.UpdateStock(item);
         }
     }

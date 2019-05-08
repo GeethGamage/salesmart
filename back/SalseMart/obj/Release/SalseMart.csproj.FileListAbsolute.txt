@@ -194,3 +194,5 @@ D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\Microsoft.Owin.Security
 D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\obj\Release\SalseMart.csprojResolveAssemblyReference.cache
 D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\obj\Release\SalseMart.dll
 D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\obj\Release\SalseMart.pdb
+D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\AutoMapper.dll
+D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\AutoMapper.xml
