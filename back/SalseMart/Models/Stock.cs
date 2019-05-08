@@ -7,12 +7,12 @@ namespace SalseMart.Models
 {
     public class Stock
     {
-        public int ID { get; set; }
-        public string CODE { get; set; }
-        public string NAME { get; set; }
-        public decimal WHOLESALE_PRICE { get; set; }
-        public decimal RETAIL_PRICE { get; set; }
-        public int ITEM_TYPE { get; set; }
-        public int IN_STOCK { get; set; }
+        public int id { get; set; }
+        public string code { get; set; }
+        public string name { get; set; }
+        public decimal wholesalePrice { get; set; }
+        public decimal retailPrice { get; set; }
+        public int itemType { get; set; }
+        public int inStock { get; set; }
     }
 }

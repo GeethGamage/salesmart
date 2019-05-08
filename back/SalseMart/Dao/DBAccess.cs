@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace SalseMart.Core
+namespace SalseMart.Dao
 {    
     public class DBAccess
     {
