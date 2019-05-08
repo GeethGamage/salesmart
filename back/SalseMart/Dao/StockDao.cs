@@ -1,9 +1,12 @@
 ﻿using SalseMart.Dtos;
+using SalseMart.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Web;
+using System.Web.Http;
 
 namespace SalseMart.Dao
 {
@@ -20,19 +23,30 @@ namespace SalseMart.Dao
             var getStockLimit = getStock + " LIMIT "+start+","+limit;
             return _context.RunQuery(getStockLimit);
         }
-        public void InsertStock(StockDto stockDto)
+        public DataTable InsertStock(Stock stockDto)
         {            
             string query = "INSERT INTO stock('CODE','NAME','WHOLESALE_PRICE','RETAIL_PRICE','ITEM_TYPE','IN_STOCK')" +
                 " values(" + stockDto.code + "," + stockDto.name + "," + stockDto.wholesalePrice + "," + stockDto.retailPrice + "," + stockDto.itemType + "," + stockDto.inStock + ")";
-            _context.RunNonQuery(query);            
+            _context.RunNonQuery(query);
+            string queryMaxID = "SELECT MAX(ID) From Stock";
+            return _context.RunQuery(queryMaxID);
+                       
         } 
         public void DeleteStock(int id)
         {
+            string queryId = "select * from stock where id = " + id;
+            DataTable dt = _context.RunQuery(queryId);
+            if(dt.Rows.Count == 0)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             string query = "Delete FROM stock where id = " + id;
             _context.RunNonQuery(query);
         }
-        public void UpdateStock(StockDto dto)
+        public void UpdateStock(Stock dto)
         {
+            string queryId = "select * from stock where id = " + dto.id;
+            DataTable dt = _context.RunQuery(queryId);
+            if (dt.Rows.Count == 0)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             string query = "UPDATE stock SET CODE = "+dto.code
                 +"NAME = "+ dto.name
                 + "WHOLESALE_PRICE = " + dto.wholesalePrice
