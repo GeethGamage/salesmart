@@ -9,6 +9,7 @@ import {Subject} from '../../../../../../node_modules/rxjs/Rx';
 import {Stock} from '../../../../models/stock/stock';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {StockService} from '../../../../services/stock/stock.service';
+import {InsertstockComponent} from '../insert/insertstock.component';
 
 @Component({
   selector: 'app-viewstock',
@@ -16,6 +17,7 @@ import {StockService} from '../../../../services/stock/stock.service';
   styleUrls: ['./viewstock.component.scss']
 })
 export class ViewstockComponent implements OnInit {
+
 
     stock = new Stock('', '', '');
 
@@ -42,17 +44,10 @@ export class ViewstockComponent implements OnInit {
 
     ngOnInit() {
 
-        this.registerForm = this.formBuilder.group({
-            taskcode: ['', Validators.required],
-            description: ['', [Validators.required]],
-            sortkey: ['', [Validators.required, Validators.maxLength(2)]]
-        });
         this.createTable();
     }
 
-    get f() {
-        return this.registerForm.controls;
-    }
+
 
     createTable() {
         this.dtOptions1 = {
@@ -113,11 +108,11 @@ export class ViewstockComponent implements OnInit {
         this.showMsg = false;
         this.showError = false;
     }
-    open() {
-        // const modalRef = this.modalService.open(ModalComponent);
-        const modalRef = this.modalService.open(TaskinsertComponent);
-        modalRef.componentInstance.title = 'About';
+
+    openAddModal() {
+        const modalRef = this.modalService.open(InsertstockComponent);
     }
+
 }
 
 

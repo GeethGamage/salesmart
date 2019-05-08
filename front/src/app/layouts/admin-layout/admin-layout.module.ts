@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AdminLayoutRoutes} from './admin-layout.routing';
 import {DashboardComponent} from '../../pages/dashboard/dashboard/dashboard.component';
 import {UserProfileComponent} from '../../pages/dashboard/user-profile/user-profile.component';
 import {TableListComponent} from '../../pages/dashboard/table-list/table-list.component';
@@ -25,12 +24,13 @@ import {InsertstockComponent} from '../../pages/dashboard/stock/insert/insertsto
 import {ViewstockComponent} from '../../pages/dashboard/stock/view/viewstock.component';
 import {UpdatestockComponent} from '../../pages/dashboard/stock/update/updatestock.component';
 import {DeletestockComponent} from '../../pages/dashboard/stock/delete/deletestock.component';
+import {AdminLayoutRoutingModule} from './admin-layout-routing.module';
 
 
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule.forChild(AdminLayoutRoutes),
+        RouterModule.forChild(AdminLayoutRoutingModule),
         FormsModule,
         MatButtonModule,
         MatRippleModule,

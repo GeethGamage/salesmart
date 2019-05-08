@@ -82,7 +82,4 @@ export class ApiService {
 
 }
 
-export const getEndpoint = (isHttps) => {
-    // return `${isHttps ? 'https' : 'http'}://${HOST}:${PORT}/ECBS_REST/api/v1`;
-    return this.SEND_TASK_URL ;
-};
+
