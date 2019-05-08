@@ -27,8 +27,8 @@ export class StockService {
 
     _prepare() {
 
-        this.listUrl = `${getEndpoint(false)}/Stock/List`;
-        this.addUrl = `${getEndpoint(false)}/Stock/Add`;
+        this.listUrl = `${getEndpoint(false)}/Stock/Get`;
+        this.addUrl = `${getEndpoint(false)}/Stock/Insert`;
 
 
         this.headers = new Headers();

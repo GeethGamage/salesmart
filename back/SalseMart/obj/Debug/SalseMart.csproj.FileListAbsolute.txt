@@ -210,6 +210,7 @@ D:\Angular_Workspace\SalesMart\back\SalseMart\bin\SalseMart.dll.config
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\SalseMart.dll
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\SalseMart.pdb
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Antlr3.Runtime.dll
+D:\Angular_Workspace\SalesMart\back\SalseMart\bin\AutoMapper.dll
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\BouncyCastle.Crypto.dll
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\EntityFramework.dll
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\EntityFramework.SqlServer.dll
@@ -251,6 +252,7 @@ D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Web.WebPages.Deployment
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Web.WebPages.dll
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Web.WebPages.Razor.dll
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\WebGrease.dll
+D:\Angular_Workspace\SalesMart\back\SalseMart\bin\AutoMapper.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Google.Protobuf.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.AI.DependencyCollector.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.AI.ServerTelemetryChannel.xml
@@ -259,7 +261,6 @@ D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.AI.WindowsServer.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.ApplicationInsights.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\MySql.Data.xml
-D:\Angular_Workspace\SalesMart\back\SalseMart\bin\MySql.Web.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Newtonsoft.Json.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Net.Http.Formatting.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Web.Helpers.xml
