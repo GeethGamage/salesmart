@@ -193,3 +193,5 @@ D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\Microsoft.Owin.Security
 D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\obj\Debug\SalseMart.dll
 D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\obj\Debug\SalseMart.pdb
+D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\AutoMapper.dll
+D:\SubProjects\SalseMart\SM\salesmart\back\SalseMart\bin\AutoMapper.xml

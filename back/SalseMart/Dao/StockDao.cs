@@ -42,7 +42,7 @@ namespace SalseMart.Dao
             _context.RunNonQuery(query);
         }
         public void UpdateStock(Stock dto)
-        {
+        {          
             string queryId = "select * from stock where id = " + dto.id;
             DataTable dt = _context.RunQuery(queryId);
             if (dt.Rows.Count == 0)

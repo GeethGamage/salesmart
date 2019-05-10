@@ -11,5 +11,4 @@ export class InsertstockComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
