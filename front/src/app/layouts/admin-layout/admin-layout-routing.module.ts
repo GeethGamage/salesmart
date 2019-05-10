@@ -1,3 +1,6 @@
+
+
+
 import { Routes } from '@angular/router';
 
 import { DashboardComponent } from '../../pages/dashboard/dashboard/dashboard.component';
@@ -12,7 +15,7 @@ import {TaskComponent} from '../../pages/dashboard/task/view/task.component';
 import {ViewstockComponent} from '../../pages/dashboard/stock/view/viewstock.component';
 
 
-export const AdminLayoutRoutes: Routes = [
+export const AdminLayoutRoutingModule: Routes = [
     // {
     //   path: '',
     //   children: [ {

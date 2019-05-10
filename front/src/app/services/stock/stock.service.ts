@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {DataTable} from '../../models/datatable/datatable';
 import {Subject} from '../../../../node_modules/rxjs/Rx';
+import {getEndpoint} from '../../utility/constants';
+import {Stock} from '../../models/stock/stock';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class StockService {
 
 
     listUrl: string;
-    allUrl: string;
+    addUrl: string;
 
 
 
@@ -25,9 +27,10 @@ export class StockService {
 
     _prepare() {
 
-        //this.viewAddUrl = `${getEndpoint(false)}/bank/viewAdd`;
-        this.listUrl = `http://192.168.1.190:8080/Api/Stock/List`;
-        //http://192.168.1.232:8080/ECBSV1_00//api/v1/bank/viewAdd
+        this.listUrl = `${getEndpoint(false)}/Stock/Get`;
+        this.addUrl = `${getEndpoint(false)}/Stock/Insert`;
+
+
         this.headers = new Headers();
         this.headers.set('Content-Type', 'application/json');
         this.options = {
@@ -36,7 +39,6 @@ export class StockService {
         };
     }
     viewStock(dataTable: DataTable): Promise<DataTable> {
-        console.log(dataTable);
         return new Promise((resolve, reject) => {
             this.http.post(this.listUrl,dataTable, this.options).subscribe(
                 (data) => {
@@ -49,15 +51,15 @@ export class StockService {
             );
         });
     }
-    viewStock2() {
+    add( stock: Stock): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.http.get(this.listUrl, this.options).subscribe(
+            this.http.post(this.addUrl, stock, this.options).subscribe(
                 (data) => {
-                    return resolve(data);
+                    //  const response: ResponseBean = new ResponseBean();
+                    return resolve(data['body']);
                 },
                 (err) => {
                     return reject(err);
-
                 }
             );
         });

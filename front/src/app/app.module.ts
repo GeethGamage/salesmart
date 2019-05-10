@@ -9,15 +9,6 @@ import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
 
 import { AppComponent } from './app.component';
-
-import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
-import { UserProfileComponent } from './pages/dashboard/user-profile/user-profile.component';
-import { TableListComponent } from './pages/dashboard/table-list/table-list.component';
-import { TypographyComponent } from './pages/dashboard/typography/typography.component';
-import { IconsComponent } from './pages/dashboard/icons/icons.component';
-import { MapsComponent } from './pages/dashboard/maps/maps.component';
-import { NotificationsComponent } from './pages/dashboard/notifications/notifications.component';
-import { UpgradeComponent } from './pages/dashboard/upgrade/upgrade.component';
 import {
   AgmCoreModule
 } from '@agm/core';

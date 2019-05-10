@@ -27,7 +27,8 @@ namespace SalseMart.Dao
         {            
             string query = "INSERT INTO stock('CODE','NAME','WHOLESALE_PRICE','RETAIL_PRICE','ITEM_TYPE','IN_STOCK')" +
                 " values(" + stockDto.code + "," + stockDto.name + "," + stockDto.wholesalePrice + "," + stockDto.retailPrice + "," + stockDto.itemType + "," + stockDto.inStock + ")";
-            _context.RunNonQuery(query);
+           
+		   _context.RunNonQuery(query);
             string queryMaxID = "SELECT MAX(ID) From Stock";
             return _context.RunQuery(queryMaxID);
                        
