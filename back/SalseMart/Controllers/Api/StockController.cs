@@ -31,10 +31,10 @@ namespace SalseMart.Controllers.Api
         }
         [Route("Api/Stock/Insert")]
         [HttpPost]
-        public IHttpActionResult CreateStock(string jsonString)
+        public IHttpActionResult CreateStock(StockDto dto)
         {            
-            _service.InsertStock(jsonString);    
-            return Ok();
+            _service.InsertStock(dto);
+            return Ok();// Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);
         }
         [Route("Api/Stock/Delete")]
         [HttpDelete]
@@ -45,9 +45,9 @@ namespace SalseMart.Controllers.Api
         }
         [Route("Api/Stock/Update")]
         [HttpPut]
-        public IHttpActionResult UpdateStock(string jsonString)
+        public IHttpActionResult UpdateStock(StockDto dto)
         {
-            _service.UpdateStock(jsonString);
+            _service.UpdateStock(dto);
             return Ok();
         }
     }

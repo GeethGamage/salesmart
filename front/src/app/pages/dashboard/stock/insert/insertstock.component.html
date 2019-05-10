@@ -13,8 +13,7 @@
   </div>
   <div class="modal-body ">
 
-    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-
+    <form (ngSubmit)="onSubmit()">
       <div class="row" *ngIf="showMsg">
         <div class="col-xs-12"><p class="alert alert-success"><strong>Registration Success!</strong> Please click here
           to login!.</p></div>
@@ -25,47 +24,46 @@
       </div>
 
 
-      <div class="form-group">
-        <label>Task Code </label>
-        <input type="text" formControlName="code"
-               class="form-control"  [(ngModel)]="addModel.code" [ngClass]="{ 'is-invalid':f.code.touched && f.code.errors }" />
-        <div *ngIf="f.code.touched && f.code.errors" class="invalid-feedback">
-          <div *ngIf="f.code.errors.required">Item Code is required</div>
+      <div class="form-group" [formGroup]="form">
+        <label>Item Code </label>
+        <input type="text" formControlName="code" name="code"
+               class="form-control"  [(ngModel)]="addModel.code" [ngClass]="{ 'is-invalid':form.get('code').touched && form.get('code').errors }" />
+        <div *ngIf="form.get('code').touched && form.get('code').errors" class="invalid-feedback">
+          <div *ngIf="form.get('code').errors.required">Item Code is required</div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" [formGroup]="form">
         <label>Description</label>
-        <input type="text" formControlName="description" class="form-control" [(ngModel)]="addModel.description"
-               [ngClass]="{ 'is-invalid': f.description.touched &&  f.description.errors }" />
-        <div *ngIf="f.description.touched && f.description.errors" class="invalid-feedback">
-          <div *ngIf="f.description.errors.required">description is required</div>
+        <input type="text" formControlName="description"  name="description" class="form-control" [(ngModel)]="addModel.description"
+               [ngClass]="{ 'is-invalid': form.get('description').touched &&  form.get('description').errors }" />
+        <div *ngIf="form.get('description').touched && form.get('description').errors" class="invalid-feedback">
+          <div *ngIf="form.get('description').errors.required">description is required</div>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" [formGroup]="form">
         <label>Whole Sale Prise</label>
-        <input type="text" formControlName="wholesalePrice" class="form-control" [(ngModel)]="addModel.wholesalePrice"
-               [ngClass]="{ 'is-invalid': f.wholesalePrice.touched &&  f.wholesalePrice.errors }" />
-        <div *ngIf="f.wholesalePrice.touched && f.wholesalePrice.errors" class="invalid-feedback">
-          <div *ngIf="f.wholesalePrice.errors.required">Wholesale Price is required</div>
+        <input type="text" formControlName="wholesalePrice" name="wholesalePrice"  class="form-control" [(ngModel)]="addModel.wholesalePrice"
+               [ngClass]="{ 'is-invalid': form.get('wholesalePrice').touched &&  form.get('wholesalePrice').errors }" />
+        <div *ngIf="form.get('wholesalePrice').touched && form.get('wholesalePrice').errors" class="invalid-feedback">
+          <div *ngIf="form.get('wholesalePrice').errors.required">Wholesale Price is required</div>
         </div>
       </div>
-      <div class="form-group">
-        <label>Retail Prise</label>
-        <input type="text" formControlName="retailPrice" class="form-control" [(ngModel)]="addModel.retailPrice"
-               [ngClass]="{ 'is-invalid': f.retailPrice.touched &&  f.retailPrice.errors }" />
-        <div *ngIf="f.retailPrice.touched && f.retailPrice.errors" class="invalid-feedback">
-          <div *ngIf="f.retailPrice.errors.required">Retail Price is required</div>
+      <div class="form-group" [formGroup]="form">
+        <label>retailPrise</label>
+        <input type="text" formControlName="retailPrice"  name="retailPrice" class="form-control" [(ngModel)]="addModel.retailPrice"
+               [ngClass]="{ 'is-invalid': form.get('retailPrice').touched &&  form.get('retailPrice').errors }" />
+        <div *ngIf="form.get('retailPrice').touched && form.get('retailPrice').errors" class="invalid-feedback">
+          <div *ngIf="form.get('retailPrice').errors.required">retailPrice is required</div>
         </div>
       </div>
-
       <div class="form-group">
         <label>In Stock</label>
-        <input type="number" #inStock="ngModel" class="form-control" [(ngModel)]="addModel.inStock"/>
+        <input type="number" name="inStock"   class="form-control" [(ngModel)]="addModel.inStock"/>
       </div>
 
       <div class="form-group">
         <label>Item Type</label>
-          <select name="itemType"  class="form-select" id="itemType"  [(ngModel)]="addModel.iteamType"  >
+          <select name="itemType"  class="form-control" id="itemType"  [(ngModel)]="addModel.iteamType"  >
             <option value="" selected disabled>Select Item Type</option>
             <option >1</option>
             <option >2</option>
@@ -87,7 +85,7 @@
 
       <div class="row">
         <div class="col-md-12">
-          <input type="submit" class="primary-button" value="Submit" [disabled]="!registerForm.valid">
+          <input type="submit" class="primary-button" value="Submit" [disabled]="!form.valid">
           <input type="button" class="primary-button" value="Reset" (click)="resetForm(f)">
         </div>
       </div>

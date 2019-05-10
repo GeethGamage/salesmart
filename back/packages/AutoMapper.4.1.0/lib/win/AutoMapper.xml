@@ -2043,5 +2043,62 @@
             <param name="parameters">Parameters for parameterized mapping expressions</param>
             <returns>Queryable result, use queryable extension methods to project and execute result</returns>
         </member>
+        <member name="T:System.AggregateException">
+            <summary>Represents one or more errors that occur during application execution.</summary>
+            <remarks>
+            <see cref="T:System.AggregateException"/> is used to consolidate multiple failures into a single, throwable
+            exception object.
+            </remarks>
+        </member>
+        <member name="M:System.AggregateException.#ctor(System.Collections.Generic.IEnumerable{System.Exception})">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.AggregateException"/> class with
+            references to the inner exceptions that are the cause of this exception.
+            </summary>
+            <param name="innerExceptions">The exceptions that are the cause of the current exception.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="innerExceptions"/> argument
+            is null.</exception>
+            <exception cref="T:System.ArgumentException">An element of <paramref name="innerExceptions"/> is
+            null.</exception>
+        </member>
+        <member name="M:System.AggregateException.#ctor(System.String,System.Collections.Generic.IList{System.Exception})">
+            <summary>
+            Allocates a new aggregate exception with the specified message and list of inner exceptions.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerExceptions">The exceptions that are the cause of the current exception.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="innerExceptions"/> argument
+            is null.</exception>
+            <exception cref="T:System.ArgumentException">An element of <paramref name="innerExceptions"/> is
+            null.</exception>
+        </member>
+        <member name="M:System.AggregateException.GetBaseException">
+            <summary>
+            Returns the <see cref="T:System.AggregateException"/> that is the root cause of this exception.
+            </summary>
+        </member>
+        <member name="P:System.AggregateException.InnerExceptions">
+            <summary>
+            Gets a read-only collection of the <see cref="T:System.Exception"/> instances that caused the
+            current exception.
+            </summary>
+        </member>
+        <member name="M:System.AggregateException.ToString">
+            <summary>
+            Creates and returns a string representation of the current <see cref="T:System.AggregateException"/>.
+            </summary>
+            <returns>A string representation of the current exception.</returns>
+        </member>
+        <member name="P:System.AggregateException.InnerExceptionCount">
+            <summary>
+            This helper property is used by the DebuggerDisplay.
+            
+            Note that we don't want to remove this property and change the debugger display to {InnerExceptions.Count} 
+            because DebuggerDisplay should be a single property access or parameterless method call, so that the debugger 
+            can use a fast path without using the expression evaluator.
+            
+            See http://msdn.microsoft.com/en-us/library/x810d419.aspx
+            </summary>
+        </member>
     </members>
 </doc>

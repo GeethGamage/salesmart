@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import {TaskViewModel} from '../../task/view/task.component';
 import {ApiService} from '../../../../services/task/api.service';
 import {Stock} from '../../../../models/stock/stock';
@@ -18,24 +18,22 @@ export class InsertstockComponent implements OnInit {
 
     showMsg :false;
     showError:false;
-    registerForm: FormGroup;
     submitted = false;
 
     constructor(public activeModal: NgbActiveModal,
                 private formBuilder: FormBuilder,
                 private stockService: StockService) { }
 
+    form = new FormGroup({
+        code: new FormControl('', [Validators.required]),
+        description: new FormControl('',[ Validators.required]),
+        wholesalePrice: new FormControl('',[ Validators.required]),
+        retailPrice: new FormControl('',[ Validators.required]),
+    });
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            code: ['', Validators.required],
-            description: ['', [Validators.required]],
-            wholesalePrice: ['', [Validators.required]],
-            retailPrice: ['', [Validators.required]],
-        });
+
     }
-    get f() {
-        return this.registerForm.controls;
-    }
+
 
 
 
@@ -59,7 +57,6 @@ export class InsertstockComponent implements OnInit {
     resetForm(form: NgForm) {
 
         // form.onReset();
-        this.registerForm.reset();
         this.showMsg = false;
         this.showError = false;
     }

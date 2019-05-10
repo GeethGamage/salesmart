@@ -24,6 +24,7 @@ namespace SalseMart.Dao
         {            
             string query = "INSERT INTO stock('CODE','NAME','WHOLESALE_PRICE','RETAIL_PRICE','ITEM_TYPE','IN_STOCK')" +
                 " values(" + stockDto.code + "," + stockDto.name + "," + stockDto.wholesalePrice + "," + stockDto.retailPrice + "," + stockDto.itemType + "," + stockDto.inStock + ")";
+Console.WriteLine(query);
             _context.RunNonQuery(query);            
         } 
         public void DeleteStock(int id)
