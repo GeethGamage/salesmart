@@ -69,8 +69,8 @@ export class ViewstockComponent implements OnInit {
                          //console.log(data);
                     this.stockList=data.dataList;
                     callback({
-                        recordsTotal: 14,
-                        recordsFiltered: 14,
+                        recordsTotal: 25,
+                        recordsFiltered: 25,
                         data: [],
                     });
                 });
@@ -78,7 +78,6 @@ export class ViewstockComponent implements OnInit {
             columns: [{name: 'taskcode'}, {name: 'description'}, {name: 'sortkey'}]
         };
     }
-
 
     search() {
         this.dataTableModel1.searchField = JSON.stringify(this.stock);

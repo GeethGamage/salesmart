@@ -15,9 +15,17 @@ namespace SalseMart.Dao
 
         private DBAccess()
         {
+            try
+            {
+            
             string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
             _connection = new MySqlConnection();
-            _connection.ConnectionString = connectionString;           
+            _connection.ConnectionString = connectionString;
+            }
+            catch (Exception )
+            {
+                
+            }
         }
         public static DBAccess Instance()
         {
@@ -56,13 +64,22 @@ namespace SalseMart.Dao
         }
         public void RunNonQuery(string myExecuteQuery)
         {
+            try
+            {            
             MySqlCommand myCommand = new MySqlCommand(myExecuteQuery, _connection);
             OpenConnection();
             myCommand.ExecuteNonQuery();
             CloseConnection();
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
         }
         public DataTable RunQuery(string myExecuteQuery)
         {
+            try { 
             MySqlCommand myCommand = new MySqlCommand(myExecuteQuery, _connection);
             OpenConnection();
             MySqlDataReader dataReader = myCommand.ExecuteReader();
@@ -75,6 +92,12 @@ namespace SalseMart.Dao
           
             CloseConnection();
             return dt;
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
         }
     }
 }

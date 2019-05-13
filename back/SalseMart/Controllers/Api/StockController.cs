@@ -35,12 +35,18 @@ namespace SalseMart.Controllers.Api
         [HttpPost]
         public IHttpActionResult CreateStock(StockDto dto)
         {
+            try { 
             if (!ModelState.IsValid)
                 return BadRequest();
             var stock = Mapper.Map<StockDto, Stock>(dto);
             int id = _service.InsertStock(stock);
             dto.id = id;
             return Created(new Uri(Request.RequestUri + "/" + id), dto);
+            }
+            catch (Exception E)
+            {
+                return InternalServerError(E);
+            }
         }
         [Route("Api/Stock/Delete")]
         [HttpDelete]

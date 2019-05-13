@@ -44,10 +44,17 @@ namespace SalseMart.Services
             return dtoTo;
         }
         public int InsertStock(Stock item)
-        {         
+        {
+            try {      
             DataTable dt = _stockDao.InsertStock(item);
             string id = dt.Rows[0][0].ToString();
             return Convert.ToInt32(id);
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
         }
         public void DeleteStock(int id)
         {
