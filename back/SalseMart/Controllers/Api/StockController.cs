@@ -68,20 +68,23 @@ namespace SalseMart.Controllers.Api
         }
         [Route("Api/Stock/Update")]
         [HttpPut]
-        public void UpdateStock(StockDto dto)
+        public IHttpActionResult UpdateStock(StockDto dto)
         {
 
             try
             {
                 if (!ModelState.IsValid)
-                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                    return BadRequest();
+                var count = _service.GetItemCount(dto.id);
+                if (count == 0)
+                    return NotFound();
                 var stock = Mapper.Map<StockDto, Stock>(dto);
                 _service.UpdateStock(stock);
-
+                return StatusCode(HttpStatusCode.NoContent);
             }
-            catch (Exception )
+            catch (Exception E)
             {
-
+                return InternalServerError(E);
             }
     }
 }

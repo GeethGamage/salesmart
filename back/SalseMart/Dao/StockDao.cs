@@ -77,13 +77,15 @@ namespace SalseMart.Dao
 				throw E;
 			}
 		}
+		public int GetItem(int id)
+		{
+			string queryId = "select * from stock where id = " + id;
+			DataTable dt = _context.RunQuery(queryId);
+			return dt.Rows.Count;
+		}
 		public void UpdateStock(Stock dto)
 		{
-			try {        
-			string queryId = "select * from stock where id = " + dto.id;
-			DataTable dt = _context.RunQuery(queryId);
-			if (dt.Rows.Count == 0)
-				throw new HttpResponseException(HttpStatusCode.NotFound);
+			try {	
 			string query = "UPDATE stock SET CODE = "+dto.code
 				+"NAME = "+ dto.name
 				+ "WHOLESALE_PRICE = " + dto.wholesalePrice

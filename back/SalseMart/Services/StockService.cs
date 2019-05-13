@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 
 namespace SalseMart.Services
 {    
@@ -80,9 +81,22 @@ namespace SalseMart.Services
                 throw E;
             }
         }
+        public int GetItemCount(int id)
+        {
+            try
+            {
+                return _stockDao.GetItem(id);
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
+        }
         public void UpdateStock(Stock item)
         {
-            try {     
+            try {               
+                    
             _stockDao.UpdateStock(item);
             }
             catch (Exception E)
