@@ -41,6 +41,9 @@ namespace SalseMart.Services
                 };
                 dtoTo.dataList.Add(stock);
             }
+            var totCount = _stockDao.GetStockCount();
+            dtoTo.recordsTotal = totCount;
+            dtoTo.recordsFiltered = totCount;
             return dtoTo;
         }
         public int InsertStock(Stock item)
