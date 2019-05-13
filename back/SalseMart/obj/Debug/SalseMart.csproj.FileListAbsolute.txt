@@ -166,7 +166,6 @@ D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.AI.WindowsServer.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.ApplicationInsights.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\MySql.Data.xml
-D:\Angular_Workspace\SalesMart\back\SalseMart\bin\MySql.Web.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\Newtonsoft.Json.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Net.Http.Formatting.xml
 D:\Angular_Workspace\SalesMart\back\SalseMart\bin\System.Web.Helpers.xml
