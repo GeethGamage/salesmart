@@ -17,25 +17,32 @@ namespace SalseMart.Dao
 		{
 			_context = DBAccess.Instance();
 		}  
-        public int GetStockCount()
-        {
-            try
-            {
-                string countQuery = "select COUNT(*) from stock";
-                var count = _context.RunQuery(countQuery);
-                return Convert.ToInt32(count.Rows[0][0]);
-            }
-            catch (Exception E)
-            {
+		public int GetStockCount()
+		{
+			try
+			{
+				string countQuery = "select COUNT(*) from stock";
+				var count = _context.RunQuery(countQuery);
+				return Convert.ToInt32(count.Rows[0][0]);
+			}
+			catch (Exception E)
+			{
 
-                throw E;
-            }
-        } 
+				throw E;
+			}
+		} 
 		public DataTable GetStock(int start,int limit)
 		{
+			try { 
 			string getStock = "select * from stock";
 			var getStockLimit = getStock + " LIMIT "+start+","+limit;
 			return _context.RunQuery(getStockLimit);
+			}
+			catch (Exception E)
+			{
+
+				throw E;
+			}
 		}
 		public DataTable InsertStock(Stock stockDto)
 		{
@@ -56,15 +63,23 @@ namespace SalseMart.Dao
 		} 
 		public void DeleteStock(int id)
 		{
+			try { 
 			string queryId = "select * from stock where id = " + id;
 			DataTable dt = _context.RunQuery(queryId);
 			if(dt.Rows.Count == 0)
 				throw new HttpResponseException(HttpStatusCode.NotFound);
 			string query = "Delete FROM stock where id = " + id;
 			_context.RunNonQuery(query);
+			}
+			catch (Exception E)
+			{
+
+				throw E;
+			}
 		}
 		public void UpdateStock(Stock dto)
-		{          
+		{
+			try {        
 			string queryId = "select * from stock where id = " + dto.id;
 			DataTable dt = _context.RunQuery(queryId);
 			if (dt.Rows.Count == 0)
@@ -77,6 +92,12 @@ namespace SalseMart.Dao
 				+ "IN_STOCK = " + dto.inStock
 				+ "  where id = " + dto.id;
 			_context.RunNonQuery(query);
+			}
+			catch (Exception E)
+			{
+
+				throw E;
+			}
 		}
 		
 	}

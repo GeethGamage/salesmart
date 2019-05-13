@@ -20,6 +20,10 @@ namespace SalseMart.Services
         }       
         public DataTableDTO GetStock(DataTableDTO dto)
         {
+            try
+            {
+
+            
             var jsonObject = JObject.Parse(dto.dataTablesParameters);
 
             var start = (int)jsonObject["start"];
@@ -36,8 +40,8 @@ namespace SalseMart.Services
                     name = dr[2].ToString(),
                     wholesalePrice = Convert.ToDecimal(dr[3].ToString()),
                     retailPrice = Convert.ToDecimal(dr[4].ToString()),
-                    inStock = Convert.ToInt32(dr[5].ToString()),
-                    itemType = Convert.ToInt32(dr[6].ToString())
+                    itemType = Convert.ToInt32(dr[5].ToString()),
+                    inStock = Convert.ToInt32(dr[6].ToString())
                 };
                 dtoTo.dataList.Add(stock);
             }
@@ -45,6 +49,12 @@ namespace SalseMart.Services
             dtoTo.recordsTotal = totCount;
             dtoTo.recordsFiltered = totCount;
             return dtoTo;
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
         }
         public int InsertStock(Stock item)
         {
@@ -61,11 +71,25 @@ namespace SalseMart.Services
         }
         public void DeleteStock(int id)
         {
+            try { 
             _stockDao.DeleteStock(id);
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
         }
         public void UpdateStock(Stock item)
-        {          
+        {
+            try {     
             _stockDao.UpdateStock(item);
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
         }
     }
 }
