@@ -11,6 +11,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {StockService} from '../../../../services/stock/stock.service';
 import {InsertstockComponent} from '../insert/insertstock.component';
 import {UpdatestockComponent} from '../update/updatestock.component';
+import {DeletestockComponent} from '../delete/deletestock.component';
 
 @Component({
   selector: 'app-viewstock',
@@ -93,16 +94,14 @@ export class ViewstockComponent implements OnInit {
         modalRef.componentInstance.stock = record;
     }
     openDeleteModal(record: Stock) {
-        alert('Delete');
-        // const modalRef = this.modalService.open(PagedeleteComponent);
-        // modalRef.componentInstance.page = record;
+        const modalRef = this.modalService.open(DeletestockComponent);
+        modalRef.componentInstance.stock = record;
     }
 
-    openViewModal(record :Task) {
-        alert('view');
-        // const modalRef = this.modalService.open(PagedeleteComponent);
-        // modalRef.componentInstance.view = true;
-        // modalRef.componentInstance.page = record;
+    openViewModal(record :Stock) {
+        const modalRef = this.modalService.open(DeletestockComponent);
+        modalRef.componentInstance.view = true;
+        modalRef.componentInstance.stock = record;
     }
     resetForm() {
         this.stock.code = '';
