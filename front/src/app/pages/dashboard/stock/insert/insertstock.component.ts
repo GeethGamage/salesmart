@@ -14,12 +14,9 @@ import {StockService} from '../../../../services/stock/stock.service';
 export class InsertstockComponent implements OnInit {
     @Input() copyModel: Stock;
 
-    addModel = new Stock('','','');
+    addModel = new Stock('','',0);
 
-<<<<<<< HEAD
-  ngOnInit() {
-  }
-=======
+
     showMsg :false;
     showError:false;
     submitted = false;
@@ -37,11 +34,9 @@ export class InsertstockComponent implements OnInit {
     ngOnInit() {
 
     }
+  
 
-
-
-
-    onSubmit() {
+    onSubmit() {      
        // this.resetMessage();
         this.stockService.add( this.addModel).then((res: any) => {
             // if (CODE_SUCCESS===res.code) {
@@ -68,5 +63,5 @@ export class InsertstockComponent implements OnInit {
     closeModal() {
         this.activeModal.close('Modal Closed');
     }
->>>>>>> a01cbd38adc3e5deca910c82c641db3ac42fd7f8
+
 }

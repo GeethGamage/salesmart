@@ -7,17 +7,17 @@ export class Stock {
   public name    ?: string;
   public wholesalePrice   ?: string;
   public retailPrice    ?: string;
-  public iteamType   ?: string;
+  public itemType   ?: number;
   public inStock             ?: number;
 
 
 
 
-    constructor(code: string, name: string, iteamType: string) {
+    constructor(code: string, name: string, itemType: number) {
 
     this.code = code;
     this.name = name;
-    this.iteamType = iteamType;
+    this.itemType = itemType;
 
   }
 
