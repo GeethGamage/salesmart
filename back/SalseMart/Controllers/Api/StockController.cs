@@ -25,11 +25,17 @@ namespace SalseMart.Controllers.Api
         [Route("Api/Stock/Get")]        
         [HttpPost]
         public IHttpActionResult GetStock(DataTableDTO dtoFrom)
-        {           
+        {
+            try {         
             var dtoTo = _service.GetStock(dtoFrom);
             if (dtoTo.dataList.Count == 0)
                 return NotFound();
             return Ok(dtoTo);
+            }
+            catch (Exception E)
+            {
+                return InternalServerError(E);
+            }
         }
         [Route("Api/Stock/Insert")]
         [HttpPost]
@@ -51,18 +57,32 @@ namespace SalseMart.Controllers.Api
         [Route("Api/Stock/Delete")]
         [HttpDelete]
         public void DeleteStock(int id)
-        {         
-            _service.DeleteStock(id);        
+        {
+            try {         
+            _service.DeleteStock(id);
+            }
+            catch (Exception )
+            {
+                
+            }
         }
         [Route("Api/Stock/Update")]
         [HttpPut]
         public void UpdateStock(StockDto dto)
         {
-            if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
-            var stock = Mapper.Map<StockDto, Stock>(dto);
-            _service.UpdateStock(stock);
-          
-        }
+
+            try
+            {
+                if (!ModelState.IsValid)
+                    throw new HttpResponseException(HttpStatusCode.BadRequest);
+                var stock = Mapper.Map<StockDto, Stock>(dto);
+                _service.UpdateStock(stock);
+
+            }
+            catch (Exception )
+            {
+
+            }
     }
+}
 }

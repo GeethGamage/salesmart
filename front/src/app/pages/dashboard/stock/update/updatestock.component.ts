@@ -12,7 +12,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class UpdatestockComponent implements OnInit {
 
-    @Input() code: string;
+    @Input() stock: Stock;
     public updateModel = new Stock('', '', 0);
 
     showMsg :false;
@@ -33,7 +33,8 @@ export class UpdatestockComponent implements OnInit {
         retailPrice: new FormControl('',[ Validators.required]),
     });
     ngOnInit() {
-        this.find();
+        console.log(this.stock);
+        this.updateModel=this.stock;
     }
 
     closeModal() {
@@ -49,18 +50,18 @@ export class UpdatestockComponent implements OnInit {
             });
 
     }
-    find() {
-        this.resetMessages();
-        this.updateModel.code = this.code;
-        this.stockService.find(this.updateModel).then((data) => {
-            this.updateModel = data['body']['data'][0].value;
-
-
-        }).catch((err) => {
-          //  this.errorMessage = err['error']['message'];
-
-        });
-    }
+    // find() {
+    //     this.resetMessages();
+    //     this.updateModel.code = this.code;
+    //     this.stockService.find(this.updateModel).then((data) => {
+    //         this.updateModel = data['body']['data'][0].value;
+    //
+    //
+    //     }).catch((err) => {
+    //       //  this.errorMessage = err['error']['message'];
+    //
+    //     });
+    // }
     resetMessages() {
         this.showError =false;
         this.showMsg = false;

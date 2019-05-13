@@ -90,7 +90,7 @@ export class ViewstockComponent implements OnInit {
 
     openUpdateModal(record: Stock) {
         const modalRef = this.modalService.open(UpdatestockComponent);
-        modalRef.componentInstance.record = record.code;
+        modalRef.componentInstance.stock = record;
     }
     openDeleteModal(record: Stock) {
         alert('Delete');
