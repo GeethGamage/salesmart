@@ -57,18 +57,15 @@
               <td>{{rec.wholesalePrice}}</td>
               <td>{{rec.retailPrice}}</td>
               <td class="table-action-column">
-                <a *ngIf="true" (click)="openUpdateModal(rec)" data-toggle="tooltip"
-                   data-placement="top" ngbTooltip="Edit">
-                  <i class="fa fa-edit"></i>
-                </a>
-                <a *ngIf="true" (click)="openDeleteModal(rec)" data-toggle="tooltip"
-                   data-placement="top" ngbTooltip="Delete">
-                  <i class="fa fa-trash"></i>
-                </a>
-                <a *ngIf="true" (click)="openViewModal(rec)" data-toggle="tooltip"
-                   data-placement="top" ngbTooltip="View">
-                  <i class="fa fa-eye"></i>
-                </a>
+                <button  *ngIf="true"  mat-raised-button type="button" (click)="openUpdateModal(rec)" matTooltip="Edit Task" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                  <i class="material-icons">edit</i>
+                </button>
+                <button  *ngIf="true"  mat-raised-button type="button" (click)="openDeleteModal(rec)" matTooltip="Delete Task" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                  <i class="material-icons">delete</i>
+                </button>
+                <button  *ngIf="true"  mat-raised-button type="button" (click)="openUpdateModal(rec)" matTooltip="View Task" [matTooltipPosition]="'above'" class="btn btn-danger btn-link btn-sm btn-just-icon">
+                  <i class="material-icons">remove_red_eye</i>
+                </button>
               </td>
             </tr>
             <tr *ngIf="stockList?.length == 0">

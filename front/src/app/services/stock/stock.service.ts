@@ -18,6 +18,9 @@ export class StockService {
 
     listUrl: string;
     addUrl: string;
+    findUrl: string;
+    updateUrl: string;
+
 
 
 
@@ -29,6 +32,9 @@ export class StockService {
 
         this.listUrl = `${getEndpoint(false)}/Stock/Get`;
         this.addUrl = `${getEndpoint(false)}/Stock/Insert`;
+        this.findUrl = `${getEndpoint(false)}/Stock/Find`;
+        this.updateUrl = `${getEndpoint(false)}/Stock/Update`;
+
 
 
         this.headers = new Headers();
@@ -42,7 +48,6 @@ export class StockService {
         return new Promise((resolve, reject) => {
             this.http.post(this.listUrl,dataTable, this.options).subscribe(
                 (data) => {
-                    console.log(data);
                     return resolve(data['body']);
                 },
                 (err) => {
@@ -56,6 +61,35 @@ export class StockService {
             this.http.post(this.addUrl, stock, this.options).subscribe(
                 (data) => {
                     //  const response: ResponseBean = new ResponseBean();
+                    return resolve(data['body']);
+                },
+                (err) => {
+                    return reject(err);
+                }
+            );
+        });
+    }
+
+    find(stock: Stock) {
+        return new Promise((resolve, reject) => {
+            this.http.post(this.findUrl, stock, this.options).subscribe(
+                (data) => {
+                    // const response: ResponseBean = new ResponseBean();
+                    return resolve(data);
+                },
+                (err) => {
+                    alert(err);
+                    return reject(err);
+                }
+            );
+        });
+    }
+
+    update(stock: Stock): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.http.post(this.updateUrl, stock, this.options).subscribe(
+                (data) => {
+                    // const response: ResponseBean = new ResponseBean();
                     return resolve(data['body']);
                 },
                 (err) => {
