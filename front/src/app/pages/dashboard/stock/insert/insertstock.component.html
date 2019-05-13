@@ -63,12 +63,12 @@
 
       <div class="form-group">
         <label>Item Type</label>
-          <select name="itemType"  class="form-control" id="itemType"  [(ngModel)]="addModel.iteamType"  >
-            <option value="" selected disabled>Select Item Type</option>
-            <option >1</option>
-            <option >2</option>
-            <option >3</option>
-            <option >4</option>
+          <select name="itemType"  class="form-control" id="itemType"  [(ngModel)]="addModel.itemType"  >
+            <option [ngValue]="0" selected disabled>Select Item Type</option>
+            <option [ngValue]="1">1</option>
+            <option [ngValue]="2">2</option>
+            <option [ngValue]="3">3</option>
+            <option [ngValue]="4">4</option>
 
           </select>
       </div>

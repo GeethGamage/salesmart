@@ -19,7 +19,7 @@ import {InsertstockComponent} from '../insert/insertstock.component';
 export class ViewstockComponent implements OnInit {
 
 
-    stock = new Stock('', '', '');
+    stock = new Stock('', '', 0);
 
     registerForm: FormGroup;
 

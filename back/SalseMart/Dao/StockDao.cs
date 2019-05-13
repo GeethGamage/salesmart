@@ -25,8 +25,8 @@ namespace SalseMart.Dao
         }
         public DataTable InsertStock(Stock stockDto)
         {            
-            string query = "INSERT INTO stock('CODE','NAME','WHOLESALE_PRICE','RETAIL_PRICE','ITEM_TYPE','IN_STOCK')" +
-                " values(" + stockDto.code + "," + stockDto.name + "," + stockDto.wholesalePrice + "," + stockDto.retailPrice + "," + stockDto.itemType + "," + stockDto.inStock + ")";
+            string query = "INSERT INTO stock(CODE,NAME,WHOLESALE_PRICE,RETAIL_PRICE,ITEM_TYPE,IN_STOCK)" +
+                " values('" + stockDto.code + "','" + stockDto.name + "'," + stockDto.wholesalePrice + "," + stockDto.retailPrice + "," + stockDto.itemType + "," + stockDto.inStock + ")";
            
 		   _context.RunNonQuery(query);
             string queryMaxID = "SELECT MAX(ID) From Stock";
@@ -43,7 +43,7 @@ namespace SalseMart.Dao
             _context.RunNonQuery(query);
         }
         public void UpdateStock(Stock dto)
-        {
+        {          
             string queryId = "select * from stock where id = " + dto.id;
             DataTable dt = _context.RunQuery(queryId);
             if (dt.Rows.Count == 0)
