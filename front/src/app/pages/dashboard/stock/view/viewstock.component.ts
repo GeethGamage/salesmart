@@ -10,6 +10,7 @@ import {Stock} from '../../../../models/stock/stock';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {StockService} from '../../../../services/stock/stock.service';
 import {InsertstockComponent} from '../insert/insertstock.component';
+import {UpdatestockComponent} from '../update/updatestock.component';
 
 @Component({
   selector: 'app-viewstock',
@@ -66,11 +67,11 @@ export class ViewstockComponent implements OnInit {
                 }
                 this.dataTableModel1.dataTablesParameters = JSON.stringify(dataTablesParameters);
                 this.stockService.viewStock(this.dataTableModel1).then((data: DataTable) => {
-                         //console.log(data);
+                         console.log(data);
                     this.stockList=data.dataList;
                     callback({
-                        recordsTotal: 25,
-                        recordsFiltered: 25,
+                        recordsTotal: data.recordsTotal,
+                        recordsFiltered: data.recordsFiltered,
                         data: [],
                     });
                 });
@@ -83,12 +84,15 @@ export class ViewstockComponent implements OnInit {
         this.dataTableModel1.searchField = JSON.stringify(this.stock);
         this.dtTrigger1.next();
     }
-
-    openUpdateModal(record: Task) {
-        const modalRef = this.modalService.open(TaskupdateComponent);
-        modalRef.componentInstance.record = record;
+    openAddModal() {
+        const modalRef = this.modalService.open(InsertstockComponent);
     }
-    openDeleteModal(record: Task) {
+
+    openUpdateModal(record: Stock) {
+        const modalRef = this.modalService.open(UpdatestockComponent);
+        modalRef.componentInstance.record = record.code;
+    }
+    openDeleteModal(record: Stock) {
         alert('Delete');
         // const modalRef = this.modalService.open(PagedeleteComponent);
         // modalRef.componentInstance.page = record;
@@ -108,9 +112,7 @@ export class ViewstockComponent implements OnInit {
         this.showError = false;
     }
 
-    openAddModal() {
-        const modalRef = this.modalService.open(InsertstockComponent);
-    }
+
 
 }
 

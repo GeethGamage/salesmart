@@ -1,3 +1,93 @@
-<p>
-  updatestock works!
-</p>
+
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+      <img src="/assets/images/logo.png" class="modal-header-logo" alt="" height="30px">
+      <span class="modal-header-title" >Update Stock Details</span>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span class="close-icon" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body ">
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="row" *ngIf="showMsg">
+        <div class="col-xs-12"><p class="alert alert-success"><strong> Success!</strong> Please click here
+          to login!.</p></div>
+      </div>
+      <div class="row" *ngIf="showError">
+        <div class="col-xs-12"><p class="alert alert-danger"><strong>Error in Adding.!</strong> Please click here to
+          login!.</p></div>
+      </div>
+
+
+      <div class="form-group" [formGroup]="form">
+        <label>Item Code </label>
+        <input type="text" formControlName="code" name="code"
+               class="form-control"  [(ngModel)]="updateModel.code" [ngClass]="{ 'is-invalid':form.get('code').touched && form.get('code').errors }" />
+        <div *ngIf="form.get('code').touched && form.get('code').errors" class="invalid-feedback">
+          <div *ngIf="form.get('code').errors.required">Item Code is required</div>
+        </div>
+      </div>
+      <div class="form-group" [formGroup]="form">
+        <label>Description</label>
+        <input type="text" formControlName="description"  name="description" class="form-control" [(ngModel)]="updateModel.name"
+               [ngClass]="{ 'is-invalid': form.get('description').touched &&  form.get('description').errors }" />
+        <div *ngIf="form.get('description').touched && form.get('description').errors" class="invalid-feedback">
+          <div *ngIf="form.get('description').errors.required">description is required</div>
+        </div>
+      </div>
+      <div class="form-group" [formGroup]="form">
+        <label>Whole Sale Prise</label>
+        <input type="text" formControlName="wholesalePrice" name="wholesalePrice"  class="form-control" [(ngModel)]="updateModel.wholesalePrice"
+               [ngClass]="{ 'is-invalid': form.get('wholesalePrice').touched &&  form.get('wholesalePrice').errors }" />
+        <div *ngIf="form.get('wholesalePrice').touched && form.get('wholesalePrice').errors" class="invalid-feedback">
+          <div *ngIf="form.get('wholesalePrice').errors.required">Wholesale Price is required</div>
+        </div>
+      </div>
+      <div class="form-group" [formGroup]="form">
+        <label>retailPrise</label>
+        <input type="text" formControlName="retailPrice"  name="retailPrice" class="form-control" [(ngModel)]="updateModel.retailPrice"
+               [ngClass]="{ 'is-invalid': form.get('retailPrice').touched &&  form.get('retailPrice').errors }" />
+        <div *ngIf="form.get('retailPrice').touched && form.get('retailPrice').errors" class="invalid-feedback">
+          <div *ngIf="form.get('retailPrice').errors.required">retailPrice is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>In Stock</label>
+        <input type="number" name="inStock"   class="form-control" [(ngModel)]="updateModel.inStock"/>
+      </div>
+
+      <div class="form-group">
+        <label>Item Type</label>
+        <select name="itemType"  class="form-control" id="itemType"  [(ngModel)]="updateModel.itemType"  >
+          <option [ngValue]="0" selected disabled>Select Item Type</option>
+          <option [ngValue]="1">Pisce</option>
+          <option [ngValue]="2">Box</option>
+          <option [ngValue]="3">Meter</option>
+          <option [ngValue]="4">Yard</option>
+
+        </select>
+      </div>
+
+      <table>
+        <tr>
+          <td colspan="2">
+            <div class="mv-mandatory-field">Mandatory fields are marked with
+              <span style="color: red">*</span>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div class="row">
+        <div class="col-md-12">
+          <input type="submit" class="primary-button" value="Submit" [disabled]="!form.valid">
+          <input type="button" class="primary-button" value="Reset" (click)="resetForm(f)">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

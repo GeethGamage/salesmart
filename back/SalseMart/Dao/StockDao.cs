@@ -16,7 +16,21 @@ namespace SalseMart.Dao
 		public StockDao()
 		{
 			_context = DBAccess.Instance();
-		}   
+		}  
+        public int GetStockCount()
+        {
+            try
+            {
+                string countQuery = "select COUNT(*) from stock";
+                var count = _context.RunQuery(countQuery);
+                return Convert.ToInt32(count.Rows[0][0]);
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
+        } 
 		public DataTable GetStock(int start,int limit)
 		{
 			string getStock = "select * from stock";
