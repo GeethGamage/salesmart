@@ -1,4 +1,5 @@
-﻿using SalseMart.Dtos;
+﻿using MySql.Data.MySqlClient;
+using SalseMart.Dtos;
 using SalseMart.Models;
 using System;
 using System.Collections.Generic;
@@ -17,26 +18,39 @@ namespace SalseMart.Dao
 		{
 			_context = DBAccess.Instance();
 		}  
-		public int GetStockCount()
-		{
-			try
-			{
-				string countQuery = "select COUNT(*) from stock";
-				var count = _context.RunQuery(countQuery);
-				return Convert.ToInt32(count.Rows[0][0]);
-			}
-			catch (Exception E)
-			{
-
-				throw E;
-			}
-		} 
-		public DataTable GetStock(int start,int limit)
+		
+		public DataTable GetStock(int start,int limit,string code, string name)
 		{
 			try { 
+
 			string getStock = "select * from stock";
 			var getStockLimit = getStock + " LIMIT "+start+","+limit;
-			return _context.RunQuery(getStockLimit);
+				var parameters = new MySqlParameter[4];
+				parameters[0] = new MySqlParameter();
+				parameters[0].Direction = ParameterDirection.Input;
+				parameters[0].DbType = DbType.String;
+				parameters[0].ParameterName = "@itemCode";
+				parameters[0].Value = code;
+
+				parameters[1] = new MySqlParameter();
+				parameters[1].Direction = ParameterDirection.Input;
+				parameters[1].DbType = DbType.String;
+				parameters[1].ParameterName = "@itemName";
+				parameters[1].Value = name;
+
+				parameters[2] = new MySqlParameter();
+				parameters[2].Direction = ParameterDirection.Input;
+				parameters[2].DbType = DbType.Int32;
+				parameters[2].ParameterName = "@filterStart";
+				parameters[2].Value = start;
+
+				parameters[3] = new MySqlParameter();
+				parameters[3].Direction = ParameterDirection.Input;
+				parameters[3].DbType = DbType.Int32;
+				parameters[3].ParameterName = "@filterLength";
+				parameters[3].Value = limit;
+
+				return _context.ExecuteStoredProcedure("GETITEMS", parameters);
 			}
 			catch (Exception E)
 			{
@@ -86,12 +100,12 @@ namespace SalseMart.Dao
 		public void UpdateStock(Stock dto)
 		{
 			try {	
-			string query = "UPDATE stock SET CODE = "+dto.code
-				+"NAME = "+ dto.name
-				+ "WHOLESALE_PRICE = " + dto.wholesalePrice
-				+ "RETAIL_PRICE = " + dto.retailPrice
-				+ "ITEM_TYPE = " + dto.itemType
-				+ "IN_STOCK = " + dto.inStock
+			string query = "UPDATE stock SET CODE = '"+dto.code
+				+"',NAME = '"+ dto.name
+				+ "',WHOLESALE_PRICE = " + dto.wholesalePrice
+				+ ",RETAIL_PRICE = " + dto.retailPrice
+				+ ",ITEM_TYPE = " + dto.itemType
+				+ ",IN_STOCK = " + dto.inStock
 				+ "  where id = " + dto.id;
 			_context.RunNonQuery(query);
 			}

@@ -9,6 +9,7 @@ namespace SalseMart.Dtos
     {
         public List<Object> dataList { get; set; }
         public string dataTablesParameters { get; set; }
+        public string searchField { get; set; }
         public int start { get; set; }
         public int length { get; set; }
         public long recordsTotal { get; set; }

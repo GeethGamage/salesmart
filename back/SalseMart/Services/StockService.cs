@@ -20,16 +20,17 @@ namespace SalseMart.Services
             _stockDao = new StockDao();
         }       
         public DataTableDTO GetStock(DataTableDTO dto)
-        {
+        {            
             try
-            {
-
-            
+            {                         
             var jsonObject = JObject.Parse(dto.dataTablesParameters);
-
-            var start = (int)jsonObject["start"];
+            var jsonSearchF = JObject.Parse(dto.searchField); 
+                var start = (int)jsonObject["start"];
             var length = (int)jsonObject["length"];
-            DataTable dt = _stockDao.GetStock(start, length);
+                var code = (string)jsonSearchF["code"];
+                var name = (string)jsonSearchF["name"];
+                var order = (string)jsonSearchF["order"];
+            DataTable dt = _stockDao.GetStock(start, length,code,name);
             var dtoTo = new DataTableDTO();
             dtoTo.dataList = new System.Collections.Generic.List<Object>();
             foreach (DataRow dr in dt.Rows)
@@ -46,7 +47,8 @@ namespace SalseMart.Services
                 };
                 dtoTo.dataList.Add(stock);
             }
-            var totCount = _stockDao.GetStockCount();
+            
+                var totCount = dt.Rows.Count;
             dtoTo.recordsTotal = totCount;
             dtoTo.recordsFiltered = totCount;
             return dtoTo;

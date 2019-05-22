@@ -28,8 +28,8 @@ namespace SalseMart.Controllers.Api
         {
             try {         
             var dtoTo = _service.GetStock(dtoFrom);
-            if (dtoTo.dataList.Count == 0)
-                return NotFound();
+            //if (dtoTo.dataList.Count == 0)
+            //    return NotFound();
             return Ok(dtoTo);
             }
             catch (Exception E)
@@ -54,7 +54,7 @@ namespace SalseMart.Controllers.Api
                 return InternalServerError(E);
             }
         }
-        [Route("Api/Stock/Delete")]
+        [Route("Api/Stock/Delete/{id}")]
         [HttpDelete]
         public void DeleteStock(int id)
         {

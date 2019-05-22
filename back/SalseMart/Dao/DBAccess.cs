@@ -49,18 +49,26 @@ namespace SalseMart.Dao
             _connection.Close();
         }
 
-        public int ExecuteStoredProcedure(string name, params MySqlParameter[] commandParamters)
+        public DataTable ExecuteStoredProcedure(string name, params MySqlParameter[] commandParamters)
         {
-            int count;
+            DataTable obj;
+            OpenConnection();
             using (var cmd = new MySqlCommand())
         {
+            
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = _connection;
                 cmd.CommandText = name;
                 cmd.Parameters.AddRange(commandParamters);
-                count = cmd.ExecuteNonQuery();
-            }
-            return count;
+                using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                {
+                    obj = new DataTable();
+                    sda.Fill(obj);                   
+                }
+            }           
+            CloseConnection();
+            return obj;
+            
         }
         public void RunNonQuery(string myExecuteQuery)
         {

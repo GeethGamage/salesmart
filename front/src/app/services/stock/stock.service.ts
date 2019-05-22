@@ -20,6 +20,7 @@ export class StockService {
     addUrl: string;
     findUrl: string;
     updateUrl: string;
+    deleteUrl: string;
 
 
 
@@ -34,6 +35,7 @@ export class StockService {
         this.addUrl = `${getEndpoint(false)}/Stock/Insert`;
         this.findUrl = `${getEndpoint(false)}/Stock/Find`;
         this.updateUrl = `${getEndpoint(false)}/Stock/Update`;
+        this.deleteUrl = `${getEndpoint(false)}/Stock/Delete`;
 
 
 
@@ -87,9 +89,22 @@ export class StockService {
 
     update(stock: Stock): Promise<any> {
         return new Promise((resolve, reject) => {
-            this.http.post(this.updateUrl, stock, this.options).subscribe(
+            this.http.put(this.updateUrl, stock, this.options).subscribe(
                 (data) => {
                     // const response: ResponseBean = new ResponseBean();
+                    return resolve(data['body']);
+                },
+                (err) => {
+                    return reject(err);
+                }
+            );
+        });
+    }
+
+    delete(id: number): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this.http.delete(this.deleteUrl+"/"+id).subscribe(
+                (data) => {
                     return resolve(data['body']);
                 },
                 (err) => {
