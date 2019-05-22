@@ -31,7 +31,8 @@ namespace SalseMart.Services
                 var name = (string)jsonSearchF["name"];
                 var order = (string)jsonSearchF["order"];
             DataTable dt = _stockDao.GetStock(start, length,code,name);
-            var dtoTo = new DataTableDTO();
+                DataTable dtTotal = _stockDao.GetStockTotal(code, name);
+                var dtoTo = new DataTableDTO();
             dtoTo.dataList = new System.Collections.Generic.List<Object>();
             foreach (DataRow dr in dt.Rows)
             {
@@ -48,7 +49,7 @@ namespace SalseMart.Services
                 dtoTo.dataList.Add(stock);
             }
             
-                var totCount = dt.Rows.Count;
+                var totCount = Convert.ToInt32(dtTotal.Rows[0][0]);
             dtoTo.recordsTotal = totCount;
             dtoTo.recordsFiltered = totCount;
             return dtoTo;

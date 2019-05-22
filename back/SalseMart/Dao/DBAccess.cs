@@ -54,8 +54,7 @@ namespace SalseMart.Dao
             DataTable obj;
             OpenConnection();
             using (var cmd = new MySqlCommand())
-        {
-            
+            {            
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Connection = _connection;
                 cmd.CommandText = name;
@@ -64,8 +63,9 @@ namespace SalseMart.Dao
                 {
                     obj = new DataTable();
                     sda.Fill(obj);                   
-                }
+                }                
             }           
+            
             CloseConnection();
             return obj;
             

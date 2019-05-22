@@ -22,9 +22,7 @@ namespace SalseMart.Dao
 		public DataTable GetStock(int start,int limit,string code, string name)
 		{
 			try { 
-
-			string getStock = "select * from stock";
-			var getStockLimit = getStock + " LIMIT "+start+","+limit;
+			
 				var parameters = new MySqlParameter[4];
 				parameters[0] = new MySqlParameter();
 				parameters[0].Direction = ParameterDirection.Input;
@@ -48,9 +46,9 @@ namespace SalseMart.Dao
 				parameters[3].Direction = ParameterDirection.Input;
 				parameters[3].DbType = DbType.Int32;
 				parameters[3].ParameterName = "@filterLength";
-				parameters[3].Value = limit;
+				parameters[3].Value = limit;                            
 
-				return _context.ExecuteStoredProcedure("GETITEMS", parameters);
+                return _context.ExecuteStoredProcedure("GETITEMS", parameters);
 			}
 			catch (Exception E)
 			{
@@ -58,7 +56,33 @@ namespace SalseMart.Dao
 				throw E;
 			}
 		}
-		public DataTable InsertStock(Stock stockDto)
+        public DataTable GetStockTotal(string code, string name)
+        {
+            try
+            {
+                
+                var parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter();
+                parameters[0].Direction = ParameterDirection.Input;
+                parameters[0].DbType = DbType.String;
+                parameters[0].ParameterName = "@itemCode";
+                parameters[0].Value = code;
+
+                parameters[1] = new MySqlParameter();
+                parameters[1].Direction = ParameterDirection.Input;
+                parameters[1].DbType = DbType.String;
+                parameters[1].ParameterName = "@itemName";
+                parameters[1].Value = name;            
+
+                return _context.ExecuteStoredProcedure("GETITEMCOUNT", parameters);
+            }
+            catch (Exception E)
+            {
+
+                throw E;
+            }
+        }
+        public DataTable InsertStock(Stock stockDto)
 		{
 			try {           
 			string query = "INSERT INTO stock(CODE,NAME,WHOLESALE_PRICE,RETAIL_PRICE,ITEM_TYPE,IN_STOCK)" +
